@@ -1,0 +1,660 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Swagger",
+        "description": "API CRUD Tournament",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://tournament.test"
+        }
+    ],
+    "paths": {
+        "/api/player": {
+            "get": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Get list of players",
+                "description": "Returns a list of players",
+                "operationId": "86f97704ab21be5419b8fe200540eeff",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PlayerResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Create a new player",
+                "description": "Creates a new player and returns the created player data",
+                "operationId": "9265cefd0e53f2eb5fce951bf96985d0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PlayerResource"
+                            },
+                            "example": {
+                                "name": "Jennifer",
+                                "gender": "woman",
+                                "skill_level": 63,
+                                "strength": null,
+                                "speed": null,
+                                "reaction_time": 74,
+                                "tournament_id": 2
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Player created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlayerResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Invalid input"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/players/{player}": {
+            "get": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Get player by Id",
+                "description": "Returns a player by Id",
+                "operationId": "1f0417c2ce63e08c2bc18eb1dec0070a",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlayerResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Player not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Delete player by Id",
+                "description": "Returns boolean: true or false",
+                "operationId": "65491a560bcdda23bfd292fa1f869317",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Player not found"
+                    }
+                }
+            }
+        },
+        "/api/player/{player}": {
+            "put": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "Player update",
+                "operationId": "345e9112a93362524efcc8545573d41a",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PlayerResource"
+                            },
+                            "example": {
+                                "name": "Jennifer",
+                                "gender": "woman",
+                                "skill_level": 78,
+                                "strength": null,
+                                "speed": null,
+                                "reaction_time": 66,
+                                "tournament_id": 2
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Player updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlayerResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Invalid input"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tournament": {
+            "get": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Get list of Tournaments",
+                "description": "Returns a list of Tournaments",
+                "operationId": "3659fa7c2bb7253ac7e17e00d26c691e",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TournamentResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Create a new tournament",
+                "description": "Creates a new tournament and returns the created tournament data",
+                "operationId": "70aaa13f673382719e5cd61a91a6ffd8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TournamentResource"
+                            },
+                            "example": {
+                                "name": "Tennis",
+                                "created_at": "30-08-2024",
+                                "gender": "woman",
+                                "players_amount": 16,
+                                "player_id": null
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tournament created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TournamentResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Invalid input"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tournament/{tournament}": {
+            "get": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Get tournament by Id",
+                "description": "Returns a tournament by Id",
+                "operationId": "a17a1f3a6e6bd4ec9e20f0234919fe7f",
+                "parameters": [
+                    {
+                        "name": "tournament",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TournamentResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Player not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Tournament update",
+                "operationId": "246c575ebe09efa21ddf110c3e7d6e4c",
+                "parameters": [
+                    {
+                        "name": "tournament",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TournamentResource"
+                            },
+                            "example": {
+                                "name": "Tennis",
+                                "created_at": "30-08-2024",
+                                "gender": "woman",
+                                "players_amount": 16,
+                                "player_id": 2
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tournament updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TournamentResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Invalid input"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Delete tournament by Id",
+                "description": "Returns boolean: true or false",
+                "operationId": "aeb73736560a2ad2a64cb993dbdfe018",
+                "parameters": [
+                    {
+                        "name": "tournament",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/api/tournament/players/{tournament}": {
+            "get": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Get players by tournament_id",
+                "description": "Returns a players by tournament_id",
+                "operationId": "a58b4204549929dce91b98ed634d8ebb",
+                "parameters": [
+                    {
+                        "name": "tournament",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlayerResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Players not found"
+                    }
+                }
+            }
+        },
+        "/api/tournament/filter": {
+            "get": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Get tournaments",
+                "operationId": "531d2fc8b02bba61db81563d94fa9588",
+                "parameters": [
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "has_winner",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TournamentResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/tournament/simulate/{tournament}": {
+            "get": {
+                "tags": [
+                    "Tournament"
+                ],
+                "summary": "Get simulate tournament by tournament_id",
+                "description": "Returns a simulate tournament by tournament_id",
+                "operationId": "78ef9a6786126476fac4f7757d856e14",
+                "parameters": [
+                    {
+                        "name": "tournament",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Players not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PlayerResource": {
+                "required": [
+                    "name",
+                    "gender",
+                    "skill_level",
+                    "tournament_id"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID of the Player",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Name of the Player",
+                        "type": "string",
+                        "example": "Matt"
+                    },
+                    "gender": {
+                        "description": "Gender of the Player",
+                        "type": "string",
+                        "enum": [
+                            "man",
+                            "woman"
+                        ],
+                        "example": "man"
+                    },
+                    "skill_level": {
+                        "description": "Player's skill level",
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0,
+                        "example": 60
+                    },
+                    "strength": {
+                        "description": "Player's strength",
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0,
+                        "example": 35
+                    },
+                    "speed": {
+                        "description": "Player's speed",
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0,
+                        "example": 45
+                    },
+                    "reaction_time": {
+                        "description": "Player's reaction time",
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0,
+                        "example": null
+                    },
+                    "tournament_id": {
+                        "description": "Tournament's ID",
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "TournamentResource": {
+                "required": [
+                    "name",
+                    "created_at",
+                    "gender",
+                    "players_amount"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Tournament's ID",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Tournament's Name",
+                        "type": "string",
+                        "example": "Tennis"
+                    },
+                    "created_at": {
+                        "description": "Tournament's Created",
+                        "type": "string",
+                        "format": "date",
+                        "example": "30-09-2024"
+                    },
+                    "gender": {
+                        "description": "Tournament's gender",
+                        "type": "string",
+                        "enum": [
+                            "man",
+                            "woman"
+                        ],
+                        "example": "man"
+                    },
+                    "players_amount": {
+                        "description": "Tournament's players amount",
+                        "type": "integer",
+                        "maximum": 32,
+                        "minimum": 2,
+                        "example": 16
+                    },
+                    "player_id": {
+                        "description": "Player's ID",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "winner": {
+                        "description": "Winner player info",
+                        "type": "object",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Players",
+            "description": "API Endpoints for Players"
+        },
+        {
+            "name": "Tournament",
+            "description": "Tournament"
+        }
+    ]
+}
